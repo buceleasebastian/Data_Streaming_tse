@@ -1,2 +1,2 @@
-# Data_Streaming_tse
-Big Data project : streaming and processing live financial data
+# Big Data: High frequency data analysis
+# Project: Streaming and Processing Live Financial Data
