@@ -51,3 +51,11 @@ while True:
 
 
 ## Processing data
+In this second step, there are two main points to bear in mind:
+- Online statistics are computed
+- This statistics are updated everytime the CSV changes. In other words, this stats are constantly "listening" any change in the CSV.
+
+
+
+
+
