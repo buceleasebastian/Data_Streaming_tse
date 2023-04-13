@@ -56,6 +56,10 @@ In this second step, there are two main points to bear in mind:
 - This statistics are updated everytime the CSV changes. In other words, this stats are constantly "listening" any change in the CSV.
 
 The online statistics to be computed are the following:
+- Mean
+- RSI
+- Low and High Bollinger bands of the stock
+- Exponential Moving Average of the stock
 
 ```
 class Mean :
