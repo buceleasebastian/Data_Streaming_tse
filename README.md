@@ -55,6 +55,89 @@ In this second step, there are two main points to bear in mind:
 - Online statistics are computed
 - This statistics are updated everytime the CSV changes. In other words, this stats are constantly "listening" any change in the CSV.
 
+The online statistics to be computed are the following:
+
+```
+class Mean :
+    n: float = 0
+    value : float = 0
+
+    def update(self, x):
+        self.n += 1
+        self.value += (x - self.value)/self.n
+```
+
+```
+def compute_RSI(df, n):
+    diff = df['Close'].diff()
+    gain = diff.where(diff > 0, 0)
+    loss = - diff.where(diff < 0, 0)
+    avg_gain = gain.rolling(window = 14).mean()
+    avg_loss = loss.rolling(window =14).mean()
+    rs = avg_gain / avg_loss
+    return 100 - (100 / (1+rs))
+```
+
+```
+def compute_bollinger_bands(df, window, no_std):
+
+    """
+    Computes values of Low and High Bollinger bands of the stock, which represent an interval in which the value of the stock is contained
+
+    -------
+    Arguments :
+
+    df : dataframe
+    window : time window for computing the values
+    no_std : number of standard deviations used in calculation
+    """
+
+
+    rolling_mean = df['Close'].rolling(window).mean()
+    rolling_std = df['Close'].rolling(window).std()
+    df['Bollinger_High'] = rolling_mean + (rolling_std*no_std)
+    df['Bollinger_Low'] = rolling_mean + (rolling_std*no_std)
+    return df
+```
+
+```
+class EMA :
+    """"
+    Dataclass that computes and updates the Exponential Moving Average of the stock
+
+    ----------
+    Attributes:
+
+    w : weight assigned to the new value
+    ema : value of the current exponential moving average
+
+    ---------
+    Methods :
+    
+    update : updates the value of the exponential moving average
+    reset : resets the value of the exponential moving average
+    
+    """
+
+    w : float
+    ema : float = 0
+
+    def update(self, x):
+        if self.ema == 0:
+            self.ema = x
+        else : 
+            self.ema = self.w *x + (1-self.w)*self.ema
+
+    def reset(self):
+        self.ema = 0
+```
+
+
+Here explain the listening part...
+
+```
+
+```
 
 
 
