@@ -167,11 +167,44 @@ model.compile(optimizer = 'adam', loss = 'mean_squared_error')
 ```
 
 
-Here explain the listening part...
+## Listening to the storage file with Watchdog
+
+In order to monitor changes in the modification of the csv file which stores the data that we are using, we will use the watchdog library. The class MinotrFile inherts from the FileSystemEventHandler Class. It is used to trigger a signal every time a change is made to the file of interest. We implement 4 classes witch are going to monitor changes in the file :
+
+- on_created : is triggered once the file has been created. It is used as a signal to show that streaming has begun
+- on_modified : is trigerred once a modification is applied to the file. The addition of a new line can represent a modification of the file
+- on_deleted : is triggered if the csv file in question is deleted
+- checkFolderSize : method incubated in the methods on_created and on_modified which serves as a signal that the size of the folder exceeds the given threshold of 1000 bytes
+
+```
+  MAX_SIZE = 1000
+
+    def checkFolderSize(self, src_path):
+        if os.path.getsize(src_path) > self.MAX_SIZE:
+            print("File getting big")
+
+    def on_created(self, event):
+        print(f"{event.src_path} was created")
+        self.checkFolderSize(event.src_path)
+
+    def on_modified(self, event):
+        print(f"{event.src_path} was modified")
+        self.checkFolderSize(event.src_path + "\\AAPL_prices.csv")
+
+    def on_deleted(self, event):
+        print(f"{event.src_path} was deleted")
+
 
 ```
 
-```
+The class reads the csv file at a given delay of time which is arbitrarily chosen but which has to be shorter than the obtention of the delay of obtention of the original data as to read only one line change at the time, in order to allow indicators to be properly computed. Calculation if indicators is effectuated if and only if the file exists. Processing, feature engineering and prediction tasks are then implemented.
+
+## Results
+
+
+## References
+
+
 
 
 
