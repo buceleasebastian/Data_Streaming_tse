@@ -57,13 +57,15 @@ while True:
 ## Processing data
 In this second step, there are two main points to bear in mind:
 - Online statistics are computed
-- This statistics are updated everytime the CSV changes. In other words, this stats are constantly "listening" any change in the CSV.
+- This statistics are updated everytime the CSV changes. In other words, these stats are constantly "listening" any change in the CSV.
 
-The online statistics to be computed are the following:
-- Mean
-- RSI
-- Low and High Bollinger bands of the stock
-- Exponential Moving Average of the stock
+Computing different statistics on the stock price can provide useful insights into the stock's historical performance, trends, and potential future movements. The online statistics to be computed are the following:
+- Mean: general sense of the stock's performance
+- The Relative Strength Index (RSI) is a momentum indicator that measures the magnitude of recent price changes to evaluate overbought or oversold conditions
+- Bollinger bands of the stock: technical analysis tool that uses a moving average and two standard deviations to create a range around the stock's price.
+- Exponential Moving Average of the stock: type of moving average that gives more weight to recent prices.
+
+
 
 ```
 class Mean :
@@ -140,12 +142,37 @@ class EMA :
         self.ema = 0
 ```
 
+Finally, we are also implementing a LSTM (Long Short-Term Memory), which is a type of recurrent neural network (RNN) architecture, that has the ability to capture long-term dependencies in sequential data. LSTMs are useful for predicting stock prices because they are able to model the complex relationships and patterns that exist in sequential financial data (hourly stock prices in our case). They are particularly well-suited to this task because they have the ability to capture long-term dependencies and remember past trends, which is critical in forecasting stock prices. 
+
+```
+#LSTM initialization
+model = Sequential()
+
+#First layer
+model.add(LSTM(units = 50, return_sequences=True, input_shape = (10,1)))
+
+#Second layer
+model.add(LSTM(units = 50, return_sequences=True))
+model.add(Dropout(0.2))
+
+#Third layer with dropout regularization
+model.add(LSTM(units = 50, return_sequences=True))
+model.add(Dropout(0.2))
+
+#Output layer
+model.add(Dense(units = 1))
+
+#Compilation
+model.compile(optimizer = 'adam', loss = 'mean_squared_error')
+```
+
 
 Here explain the listening part...
 
 ```
 
 ```
+
 
 
 
