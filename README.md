@@ -202,8 +202,22 @@ In order to monitor changes in the modification of the csv file which stores the
 
 The class reads the csv file at a given delay of time which is arbitrarily chosen but which has to be shorter than the obtention of the delay of obtention of the original data as to read only one line change at the time, in order to allow indicators to be properly computed. Calculation if indicators is effectuated if and only if the file exists. Processing, feature engineering and prediction tasks are then implemented. The script keeps track of the canges in the CSV file and updates values of the indicators accordingly if new observations are being added.
 
+
 ## Results
 
+
+## Web scraping and Interactive table of Income Statement
+
+Having a stock price prediction model is a useful and informative statistical tool for taking decisions regarding to the possibility of buying and selling the stock. However it does not explain past fluctuations and dynamics of the stock price and it does not illustrate the current state of the company. In order to have some additional information about the company's performance, we have decided to create an informational table with different measures composing Apple's Income Statement. The content has been parsed from Yahoo Finance by the usage of Urlib.request module, which allows for opening URLs and collecting content present on the webpages. Yahoo Finance blocks the access from automated script, therefore we precise the user agent in the headers in order to prevent our request from being rejected. The URL has been accessed from a Windows 10 device, which is precised in the agent information.
+
+The data parsed from the website comes in HTML code. The information is stored in division tags (divs) and has to be decoded. BeautifuSoup represents a library which allows for syntax analysis of HTML and XML files and comes in hand for the processing of the raw data. Elements of the BeautifulSoup object are appended into a list, divided accordingly so that each Income Statement Indicator has 4 corresponding numeric elements collected on 4 different dates. One issue that was encountered was the processing of lists that can be collapsed, such as "Total Revenue", which induced a disordered distribution of elements across the BeautifulSoup object. In order to simplify the process, this information has been discarded.
+
+Information is stored in a Pandas Dataframe and is displayed with the usage of the pivot_ui method of the pivottablesjs module which compiles and html file which allows for user interaction and the computation of summary statistics of the table. A screenshot of the interface is illustrated below.
+
+![image](https://user-images.githubusercontent.com/114659655/232200773-42a05c69-c17c-4905-a942-697a4c99a371.png)
+
+
+The link for the Income Statement for Apple can be found here : https://finance.yahoo.com/quote/AAPL/financials?p=AAPL
 
 ## References
 
