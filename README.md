@@ -12,7 +12,7 @@ The ticker choice for this report is Apple Stock price: AAPL. In the first part 
 
 ## Streaming data
 
-First of all, we create a dataframe where the start and end date are chosen to initialize the CSV. The dates are "randomly" chosen in the sense that we have to update the data no matter the choice of these dates. In other words, these dates are only a way to start the CSV. The ticker symbol is AAPL, and we start the CSV with January 2023. 
+First of all, we create a dataframe where the start and end date are chosen to initialize the CSV. The dates are "randomly" chosen in the sense that we have to update the data no matter the choice of these dates. In other words, these dates are only a way to start the CSV. The ticker symbol is AAPL, and we start the CSV with March 2022. 
 
 ```
 # define the stock symbol and time range
