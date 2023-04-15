@@ -156,14 +156,18 @@ Our model is represented by a four-layer Neural Network. Each layer is composed 
 model = Sequential()
 
 #First layer
-model.add(LSTM(units = 50, return_sequences=True, input_shape = (10,1)))
+model.add(LSTM(units = 128, return_sequences=True, input_shape = (10,1)))
 
 #Second layer
-model.add(LSTM(units = 50, return_sequences=True))
+model.add(LSTM(units = 128, return_sequences=True, activation = 'relu'))
 model.add(Dropout(0.2))
 
 #Third layer with dropout regularization
-model.add(LSTM(units = 50, return_sequences=True))
+model.add(LSTM(units = 128, return_sequences=True, activation = 'relu'))
+model.add(Dropout(0.2))
+
+#Fourth layer with dropout regularization
+model.add(LSTM(units = 128, return_sequences=True, activation = 'relu'))
 model.add(Dropout(0.2))
 
 #Output layer
