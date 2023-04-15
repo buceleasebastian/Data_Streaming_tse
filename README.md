@@ -220,7 +220,7 @@ Training is done over 100 epochs, with a batch size of 64, in order to have a ba
 The values of the test set (in red) are illustrated among the predicted values (blue) below :
 
 
-![results](https://user-images.githubusercontent.com/114659655/232207823-a92e13c4-5984-43b2-a616-24bb231a64ad.png)
+![price_prediction](https://user-images.githubusercontent.com/114659655/232207861-18c4d902-4d6e-422c-b39a-7bfa9bc03334.png)
 
 
 
