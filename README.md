@@ -62,10 +62,10 @@ In this second step, there are two main points to bear in mind:
 - This statistics are updated everytime the CSV changes. In other words, these stats are constantly "listening" any change in the CSV.
 
 Computing different statistics on the stock price can provide useful insights into the stock's historical performance, trends, and potential future movements. The online statistics to be computed are the following:
-- RollingMean: general sense of the stock's performance
-- The Relative Strength Index (RSI) is a momentum indicator that measures the magnitude of recent price changes to evaluate overbought or oversold conditions
-- Bollinger bands of the stock: technical analysis tool that uses a moving average and two standard deviations to create a range around the stock's price.
-- Exponential Moving Average of the stock: type of moving average that gives more weight to recent prices.
+- Rolling Mean: general sense of the stock's performance. Its value is updated with every new value that is stocked in the data.
+- The Relative Strength Index (RSI) is a momentum indicator that measures the magnitude of recent price changes to evaluate overbought or oversold conditions. It takes into account the average upward changes and the average downward changes in the price. Its values are in the range of 0 to 100. The RSI is considered overbought when its value is above 70 and oversold when its value is below 30.
+- Bollinger bands of the stock: technical analysis tool that uses a moving average and two standard deviations to create a range around the stock's price. Their utility lies in spotting abnormal variations in the price, which fluctuate outside the range set between the High and the Low Bollinger band.
+- Exponential Moving Average of the stock: type of moving average that gives more weight to recent prices. Its values illustrate the direction in which the price is evolving. It is computed by taking into account the value from the previous time period as well as the new value that has been added in the data and computes a weighted average between the two.
 
 
 The Rolling Mean and the Exponential Moving Average are computed in an online manner using dataclasses. Dataclasses represent python features that have the ability to encapsulate data and which do no require an initialization method. We are not looking for static values of the mean by taking into account all data available at each stream but rather measures that take into account the evolution of the Closing price throughout time and which update their value with every new additional information, while preserving their previous values. Hence, we attribute the method 'update' which is being employed in case a new line is added to the CSV file.
