@@ -212,6 +212,49 @@ Having a stock price prediction model is a useful and informative statistical to
 
 The data parsed from the website comes in HTML code. The information is stored in division tags (divs) and has to be decoded. BeautifuSoup represents a library which allows for syntax analysis of HTML and XML files and comes in hand for the processing of the raw data. Elements of the BeautifulSoup object are appended into a list, divided accordingly so that each Income Statement Indicator has 4 corresponding numeric elements collected on 4 different dates. One issue that was encountered was the processing of lists that can be collapsed, such as "Total Revenue", which induced a disordered distribution of elements across the BeautifulSoup object. In order to simplify the process, this information has been discarded.
 
+```
+"""
+Snippet that allows for the scraping of Income Statement Data for Apple from the Yahoo Finance Website and builds an interactive user interface in a separate HTML file
+
+---------
+Objects :
+
+Request : takes URL adress and creates Request object 
+Beautifulsoup : processes HTML text data into a manipulable text object
+
+
+https://towardsdatascience.com/web-scraping-for-accounting-analysis-using-python-part-1-b5fc016a1c9a
+
+"""
+
+
+#Index
+index = 'AAPL'
+
+
+# URL link
+url_is = 'https://finance.yahoo.com/quote/' + index + '/financials?p=' + index
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+request = Request(url_is, headers=headers)
+read_data = urlopen(request).read().decode()
+
+
+#Processing HTML text data
+soup_is = BeautifulSoup(read_data,'lxml')
+ls = [] 
+
+#Add each div data in the list
+for l in soup_is.find_all('div'): 
+  ls.append(l.string) 
+
+#Exclude columns
+ls = [e for e in ls if e not in ('Quarterly', 'Expand All')] 
+new_ls = list(filter(None,ls))
+new_ls = new_ls[104:]
+is_data = list(zip(*[iter(new_ls)]*6))
+```
+
 Information is stored in a Pandas Dataframe and is displayed with the usage of the pivot_ui method of the pivottablesjs module which compiles and html file which allows for user interaction and the computation of summary statistics of the table. A screenshot of the interface is illustrated below.
 
 ![image](https://user-images.githubusercontent.com/114659655/232200773-42a05c69-c17c-4905-a942-697a4c99a371.png)
