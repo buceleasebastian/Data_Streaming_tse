@@ -50,7 +50,7 @@ while True:
         # save the updated data as a CSV file
         data.to_csv(filename)
 
-    # wait for 1 hour before checking again
+    # wait for half an hour before checking again
     time.sleep(1800)
 ```
 
