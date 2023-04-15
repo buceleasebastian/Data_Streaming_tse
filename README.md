@@ -6,6 +6,8 @@
 
 The aim of this project addresses two main points: streaming live financial data and computing online statistics on these data. The streaming and processing of live financial data is an area of great interest for financial professionals and data scientists. The ability to collect, analyze, and act upon real-time market data can provide nvestors with a competitive advantage, allowing them to make quicker and more informed decisions. The increasing availability of streaming financial data presents new opportunities for data analysis and machine learning applications. 
 
+Additional information on the company's Income Statement has been collected with the use of web scraping tools and interactive data tables compilers. The purpose of the data present in this interactive table is purely informative, as it can help understand the possible dynamics behind the fluctuations of the stock price of the company and allows the user to get a better grasp on the overall performance of the firm. The table contains some of the indicators of the company's performance and summary statistics of the table can be computed using the interactive inteface.
+
 The ticker choice for this report is Apple Stock price: AAPL. In the first part of the report we will explain how we can update the financial data within a span of time, whereas in the second part we will try to analyze through different statistics the data obtained.
 
 ## Streaming data
@@ -209,7 +211,7 @@ The class reads the csv file at a given delay of time which is arbitrarily chose
 
 [2] Time-Series Forecasting: Predicting Stock Prices Using An LSTM Model : https://towardsdatascience.com/lstm-time-series-forecasting-predicting-stock-prices-using-an-lstm-model-6223e9644a2f
 
-
+[3] Web scraping for financial statements with Python — 1 : https://towardsdatascience.com/web-scraping-for-accounting-analysis-using-python-part-1-b5fc016a1c9a
 
 
 
