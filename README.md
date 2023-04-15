@@ -203,7 +203,11 @@ In order to monitor changes in the modification of the csv file which stores the
 The class reads the csv file at a given delay of time which is arbitrarily chosen but which has to be shorter than the obtention of the delay of obtention of the original data as to read only one line change at the time, in order to allow indicators to be properly computed. Calculation if indicators is effectuated if and only if the file exists. Processing, feature engineering and prediction tasks are then implemented. The script keeps track of the canges in the CSV file and updates values of the indicators accordingly if new observations are being added.
 
 
-## Results
+## Implementation, Training and Results
+
+A Long-Short Term Memory Network's architecture allows for the processing of entire sequences of data. A unit of an LSTM Network is composed of three gates : one gate which filters information by its relevance (Forget Gate), one capable of learning new information (Input gate) and lastly one able to pass updated information from the current state to the next state (Output gate). Therefore, an LSTM is capable of processing historical data and identifying patterns and relationships between past prices and prices that are to be forecasted, while taking into account the other features that have been implemented regarding the evolution of the stock. 
+
+Our model is represented by a four-layer Neural Network. Each layer is composed of 128 units, with the exception of the Output Layer. Dropout regularization is appleid to the second, third and fourth layer. Dropout regularization consists in randomly disabling neurons and their corresponding connections, which lowers the impact of individual neurons in the learning process and hence allows the network to generalize better and to avoid overfitting. We want the first layer to be fully connected to the second one such that every neuron in the second layer receives information, which is why we are not applying Dropout regularization to the first layer. Its parameter is chosen arbitrarily. The activation function used between the layers is ReLu, as we are looking for an output that respects the numeric scale of the data that we have. As we are using the Network for the prediction of numeric values, we are using the mean squared error as objective function.
 
 
 ## Web scraping and Interactive table of Income Statement
