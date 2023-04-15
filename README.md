@@ -1,5 +1,9 @@
 # Big Data, High frequency data analysis: Streaming and Processing Live Financial Data
 
+Authors: <br />
+Sebastian Bucelea <br />
+Javier Ballesteros Muñoz <br />
+
 <p align="center">
 <img src="https://github.com/buceleasebastian/Data_Streaming_tse/blob/main/images/candlestick_chart.svg" width=40% height=40%>
 </p>
