@@ -17,8 +17,8 @@ First of all, we create a dataframe where the start and end date are chosen to i
 ```
 # define the stock symbol and time range
 symbol = 'AAPL'
-start_date = '2023-01-01'
-end_date = '2023-02-01'
+start_date = '2022-03-01'
+end_date = '2023-04-01'
 
 # retrieve the stock price data
 data = yf.download(symbol, start=start_date, end=end_date, interval='1h')
