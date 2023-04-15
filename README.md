@@ -8,7 +8,7 @@ The aim of this project addresses two main points: streaming live financial data
 
 Additional information on the company's Income Statement has been collected with the use of web scraping tools and interactive data tables compilers. The purpose of the data present in this interactive table is purely informative, as it can help understand the possible dynamics behind the fluctuations of the stock price of the company and allows the user to get a better grasp on the overall performance of the firm. The table contains some of the indicators of the company's performance and summary statistics of the table can be computed using the interactive inteface.
 
-The ticker choice for this report is Apple Stock price: AAPL. In the first part of the report we will explain how we can update the financial data within a span of time, whereas in the second part we will try to analyze through different statistics the data obtained.
+The ticker choice for this report is Apple Stock price: AAPL. In the first part of the report we will explain how we can update the financial data within a span of time, in the second part we will try to analyze through different statistics the data obtained, and in the third section we will make sure every time new data is available and added, the statistics are updated.
 
 ## Streaming data
 
