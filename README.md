@@ -147,6 +147,10 @@ class EMA :
 
 Finally, we are also implementing a LSTM (Long Short-Term Memory), which is a type of recurrent neural network (RNN) architecture, that has the ability to capture long-term dependencies in sequential data. LSTMs are useful for predicting stock prices because they are able to model the complex relationships and patterns that exist in sequential financial data (hourly stock prices in our case). They are particularly well-suited to this task because they have the ability to capture long-term dependencies and remember past trends, which is critical in forecasting stock prices. 
 
+A Long-Short Term Memory Network's architecture allows for the processing of entire sequences of data. A unit of an LSTM Network is composed of three gates : one gate which filters information by its relevance (Forget Gate), one capable of learning new information (Input gate) and lastly one able to pass updated information from the current state to the next state (Output gate). Therefore, an LSTM is capable of processing historical data and identifying patterns and relationships between past prices and prices that are to be forecasted, while taking into account the other features that have been implemented regarding the evolution of the stock. 
+
+Our model is represented by a four-layer Neural Network. Each layer is composed of 128 units, with the exception of the Output Layer. Dropout regularization is appleid to the second, third and fourth layer. Dropout regularization consists in randomly disabling neurons and their corresponding connections, which lowers the impact of individual neurons in the learning process and hence allows the network to generalize better and to avoid overfitting. We want the first layer to be fully connected to the second one such that every neuron in the second layer receives information, which is why we are not applying Dropout regularization to the first layer. Its parameter is chosen arbitrarily. The activation function used between the layers is ReLu, as we are looking for an output that respects the numeric scale of the data that we have. As we are using the Network for the prediction of numeric values, we are using the mean squared error as objective function.
+
 ```
 #LSTM initialization
 model = Sequential()
@@ -203,11 +207,21 @@ In order to monitor changes in the modification of the csv file which stores the
 The class reads the csv file at a given delay of time which is arbitrarily chosen but which has to be shorter than the obtention of the delay of obtention of the original data as to read only one line change at the time, in order to allow indicators to be properly computed. Calculation if indicators is effectuated if and only if the file exists. Processing, feature engineering and prediction tasks are then implemented. The script keeps track of the canges in the CSV file and updates values of the indicators accordingly if new observations are being added.
 
 
-## Implementation, Training and Results
+## Training and Results
 
-A Long-Short Term Memory Network's architecture allows for the processing of entire sequences of data. A unit of an LSTM Network is composed of three gates : one gate which filters information by its relevance (Forget Gate), one capable of learning new information (Input gate) and lastly one able to pass updated information from the current state to the next state (Output gate). Therefore, an LSTM is capable of processing historical data and identifying patterns and relationships between past prices and prices that are to be forecasted, while taking into account the other features that have been implemented regarding the evolution of the stock. 
 
-Our model is represented by a four-layer Neural Network. Each layer is composed of 128 units, with the exception of the Output Layer. Dropout regularization is appleid to the second, third and fourth layer. Dropout regularization consists in randomly disabling neurons and their corresponding connections, which lowers the impact of individual neurons in the learning process and hence allows the network to generalize better and to avoid overfitting. We want the first layer to be fully connected to the second one such that every neuron in the second layer receives information, which is why we are not applying Dropout regularization to the first layer. Its parameter is chosen arbitrarily. The activation function used between the layers is ReLu, as we are looking for an output that respects the numeric scale of the data that we have. As we are using the Network for the prediction of numeric values, we are using the mean squared error as objective function.
+Training is done over 100 epochs, with a batch size of 64, in order to have a balance between training speed and prediction accuracy. We are using the Mean Squared Error, the Mean Absolute Error and the R squared score as performance indicators. A first prediction of the closing price gives us the following diagnostics :
+
+- Mean Squared Error : 48.21
+- Mean Absolute Error : 6.57
+- R^2 score : 0.63
+
+
+The values of the test set (in red) are illustrated among the predicted values (blue) below :
+
+
+![results](https://user-images.githubusercontent.com/114659655/232207823-a92e13c4-5984-43b2-a616-24bb231a64ad.png)
+
 
 
 ## Web scraping and Interactive table of Income Statement
