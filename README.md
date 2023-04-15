@@ -257,6 +257,17 @@ is_data = list(zip(*[iter(new_ls)]*6))
 
 Information is stored in a Pandas Dataframe and is displayed with the usage of the pivot_ui method of the pivottablesjs module which compiles and html file which allows for user interaction and the computation of summary statistics of the table. A screenshot of the interface is illustrated below.
 
+```
+#Create dataframe
+Income_st = pd.DataFrame(is_data[0:]).T
+Income_st.columns = Income_st.iloc[0]
+Income_st.drop(0, axis = 0, inplace = True)
+
+#Interactive table
+pivot_ui(Income_st)
+```
+
+
 ![image](https://user-images.githubusercontent.com/114659655/232200773-42a05c69-c17c-4905-a942-697a4c99a371.png)
 
 
